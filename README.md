@@ -3,12 +3,12 @@ This projects is a DSA210 term project which’s aim is to check that the averag
 
 # Motivation
 
-#Data Source
+# Data Source
 
 
-#Data Analysis
+# Data Analysis
 
 
-#Findings
+# Findings
 
-#Limitations and Future Work
+# Limitations and Future Work
