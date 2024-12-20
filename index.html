@@ -136,6 +136,10 @@
     .tile-green-normal {
         background: rgba(169, 209, 142);
     }
+    .tile-green-back {
+      margin-top: -100vh;
+      background: rgba(169, 209, 142, 1);
+    }
   
     .navbar {
       background-color: hsl(0, 0%, 25%, 0.85);
@@ -257,10 +261,12 @@
           <img class="tile-grey-normal" src="images/17.png" />
         </div>
         <div class="container">
-          <img class="tile-grey-normal" src="images/18.png" />
+            <div class="tile-grey-front">
+          <img class="inner-grey-front" src="images/18.png" />
         </div>
+    </div>
         <div class="container">
-          <img class="tile-green-normal" src="images/19.png" />
+          <img id = "5" class="tile-green-back" src="images/19.png" />
         </div>
         <div class="container">
           <img class="tile-green-normal" src="images/20.png" />
