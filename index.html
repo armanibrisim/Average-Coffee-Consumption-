@@ -1,294 +1,326 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    html {
+      scroll-behavior: smooth;
+    }
+  
+    body {
+      margin: 0;
+    }
+  
+    a {
+      color: white;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+  
+    img {
+      width: 100%;
+      display: block;
+      height: 100%;
+      position: relative;
+      object-fit: contain;
+      background: rgba(44, 43, 49, 1);
+    }
+  
+    .main-container {
+      scroll-snap-type: y proximity;
+    }
+    .container {
+    }
+  
+    .tile-light-normal {
+      background: rgba(184, 199, 228, 1);
+    }
+  
+    .tile-light-front {
+      height: 200vh;
+      pointer-events: none;
+    }
+  
+    .inner-light-front {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      object-fit: contain;
+      background: rgba(184, 199, 228, 1);
+    }
+  
+    .tile-light-pink-back {
+      margin-top: -100vh;
+      background: rgba(255, 123, 132, 1);
+    }
+  
+    .tile-light-pink-normal {
+      background: rgba(255, 123, 132, 1);
+    }
+  
+    .filler-light-pink {
+      background: rgba(255, 123, 132, 1);
+      width: 100%;
+      height: 10vh;
+    }
+    .tile-light-pink-front {
+      height: 200vh;
+      pointer-events: none;
+    }
+  
+    .inner-light-pink-front {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      object-fit: contain;
+      background: rgba(255, 123, 132, 1);
+    }
+  
+    .filler-green {
+      background: rgba(24, 216, 96);
+      width: 100%;
+      height: 10vh;
+    }
+  
+    .tile-green-normal {
+      background: rgba(24, 216, 96);
+    }
+  
+    .filler-green {
+      background: rgba(24, 216, 96);
+      width: 100%;
+      height: 20vh;
+    }
+    .tile-green-front {
+      height: 200vh;
+      pointer-events: none;
+    }
+  
+    .inner-green-front {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      object-fit: contain;
+      background: rgba(24, 216, 96);
+    }
+  
+    .filler-blue {
+      width: 100%;
+      height: 10vh;
+    }
+  
+    .tile-blue-normal {
+      background: rgba(32, 35, 188, 1);
+    }
+  
+    .filler-blue {
+      background: rgba(32, 35, 188, 1);
+      width: 100%;
+      height: 10vh;
+    }
+    .tile-blue-front {
+      height: 200vh;
+      pointer-events: none;
+    }
+  
+    .inner-blue-front {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      object-fit: contain;
+      background: rgba(32, 35, 188, 1);
+    }
+    .tile-blue-back {
+      margin-top: -100vh;
+      background: rgba(32, 35, 188, 1);
+    }
+  
+    .navbar {
+      background-color: hsl(0, 0%, 25%, 0.85);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      z-index: 10;
+      width: 100%;
+    }
+  
+    .navbar ul {
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      overflow: hidden;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+      display: block;
+      text-align: center;
+    }
+    .navbar a:hover {
+      background-color: hsl(0, 0%, 10%);
+    }
+    .navbar li {
+      float: left;
+    }
+    .yelger-gradient {
+      position: relative;
+      width: 100%;
+      margin-top: -5vh;
+      height: 20vh;
+      background: linear-gradient(
+        180deg,
+        rgba(245, 245, 161, 1) 0%,
+        rgba(245, 245, 161, 1) 20%,
+        rgba(24, 216, 96, 1) 80%,
+        rgba(24, 216, 96, 1) 100%
+      );
+    }
+    .yelpin-gradient {
+      position: relative;
+      width: 100%;
+      margin-top: -5vh;
+      height: 20vh;
+      background: linear-gradient(
+        180deg,
+        rgba(245, 245, 161, 1) 0%,
+        rgba(245, 245, 161, 1) 20%,
+        rgb(243, 57, 64) 80%,
+        rgba(243, 58, 64, 1) 100%
+      );
+    }
+    .foot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: hsl(0, 0%, 25%, 0.75);
+      backdrop-filter: blur(20px);
+      z-index: 1;
+      width: 100%;
+      height: 10vh;
+      position: relative;
+      margin-top: -10vh;
+    }
+  </style>
+  
+  <html>
     <title>DSA210-Average Coffee Consumption</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        a {
-            color: white;
-            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-        }
-
-        img {
-            width: 100%;
-            display: block;
-            height: 100%;
-            position: relative;
-            object-fit: contain;
-            background: rgba(44, 43, 49, 1);
-        }
-
-        .main-container {
-            scroll-snap-type: y proximity;
-        }
-
-        .container {
-        }
-
-        .tile-light-normal {
-            background: rgba(184, 199, 228, 1);
-        }
-
-        .tile-light-front {
-            height: 200vh;
-            pointer-events: none;
-        }
-
-        .inner-light-front {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            object-fit: contain;
-            background: rgba(184, 199, 228, 1);
-        }
-
-        .tile-light-pink-back {
-            margin-top: -100vh;
-            background: rgba(255, 123, 132, 1);
-        }
-
-        .tile-light-pink-normal {
-            background: rgba(255, 123, 132, 1);
-        }
-
-        .filler-light-pink {
-            background: rgba(255, 123, 132, 1);
-            width: 100%;
-            height: 10vh;
-        }
-
-        .tile-light-pink-front {
-            height: 200vh;
-            pointer-events: none;
-        }
-
-        .inner-light-pink-front {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            object-fit: contain;
-            background: rgba(255, 123, 132, 1);
-        }
-
-        .filler-green {
-            background: rgba(24, 216, 96);
-            width: 100%;
-            height: 10vh;
-        }
-
-        .tile-green-normal {
-            background: rgba(24, 216, 96);
-        }
-
-        .filler-green {
-            background: rgba(24, 216, 96);
-            width: 100%;
-            height: 20vh;
-        }
-
-        .tile-green-front {
-            height: 200vh;
-            pointer-events: none;
-        }
-
-        .inner-green-front {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            object-fit: contain;
-            background: rgba(24, 216, 96);
-        }
-
-        .filler-blue {
-            width: 100%;
-            height: 10vh;
-        }
-
-        .tile-blue-normal {
-            background: rgba(32, 35, 188, 1);
-        }
-
-        .filler-blue {
-            background: rgba(32, 35, 188, 1);
-            width: 100%;
-            height: 10vh;
-        }
-
-        .tile-blue-front {
-            height: 200vh;
-            pointer-events: none;
-        }
-
-        .inner-blue-front {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            object-fit: contain;
-            background: rgba(32, 35, 188, 1);
-        }
-
-        .tile-blue-back {
-            margin-top: -100vh;
-            background: rgba(32, 35, 188, 1);
-        }
-
-        .navbar {
-            background-color: hsl(0, 0%, 25%, 0.85);
-            backdrop-filter: blur(20px);
-            position: fixed;
-            z-index: 10;
-            width: 100%;
-        }
-
-        .navbar ul {
-            display: flex;
-            justify-content: center;
-            list-style-type: none;
-            padding: 0px;
-            margin: 0px;
-            overflow: hidden;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            display: block;
-            text-align: center;
-        }
-
-        .navbar a:hover {
-            background-color: hsl(0, 0%, 10%);
-        }
-
-        .navbar li {
-            float: left;
-        }
-
-        .yelger-gradient {
-            position: relative;
-            width: 100%;
-            margin-top: -5vh;
-            height: 20vh;
-            background: linear-gradient(180deg, rgba(245, 245, 161, 1) 0%, rgba(245, 245, 161, 1) 20%, rgba(24, 216, 96, 1) 80%, rgba(24, 216, 96, 1) 100%);
-        }
-
-        .yelpin-gradient {
-            position: relative;
-            width: 100%;
-            margin-top: -5vh;
-            height: 20vh;
-            background: linear-gradient(180deg, rgba(245, 245, 161, 1) 0%, rgba(245, 245, 161, 1) 20%, rgb(243, 57, 64) 80%, rgba(243, 58, 64, 1) 100%);
-        }
-
-        .foot {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: hsl(0, 0%, 25%, 0.75);
-            backdrop-filter: blur(20px);
-            z-index: 1;
-            width: 100%;
-            height: 10vh;
-            position: relative;
-            margin-top: -10vh;
-        }
-
-        .tile {
-            background-color: transparent;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar">
+    <body>
+      <nav class="navbar">
         <ul>
-            <li><a href="#1">Introduction</a></li>
-            <li><a href="#2">Health Data</a></li>
-            <li><a href="#3">Spotify Data</a></li>
-            <li><a href="#4">Findings</a></li>
+          <li><a href="#1">Introduction</a></li>
+          <li><a href="#2">Health Data</a></li>
+          <li><a href="#3">Spotify Data</a></li>
+          <li><a href="#4">Findings</a></li>
         </ul>
-    </nav>
-    <div class="main-container">
+      </nav>
+      <div class="main-container">
         <div class="container">
-            <img id="1" class="tile-light-normal" src="images/1.png" />
+          <img id="1" class="tile-light-normal" src="images/1.png" />
         </div>
         <div class="container">
-            <img class="tile-light-normal" src="images/2.png" />
+          <img class="tile-light-normal" src="images/2.png" />
         </div>
         <div class="container">
-            <div class="tile-light-front">
-                <img class="inner-light-front" src="images/3.png" />
-            </div>
+          <div class="tile-light-front">
+            <img class="inner-light-front" src="images/3.png" />
+          </div>
         </div>
         <div class="container">
-            <img id="2" class="tile-light-normal" src="images/4.png" />
+          <img id="2" class="tile-light-pink-back" src="images/4.png" />
         </div>
         <div class="yelpin-gradient"></div>
-        <!-- Your other containers -->
-    </div>
-
-    <footer class="foot">
-        <a href="https://github.com/armanibrisim">Github</a>
-        <a style="margin-left: 5px">|</a>
-        <a style="margin-left: 5px" href="https://tr.linkedin.com/in/arman-ibri%C5%9Fim-218762253">LinkedIn</a>
-    </footer>
-
-    <script>
-        function getDominantColor(imgElement) {
-            return new Promise((resolve, reject) => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                const img = new Image();
-                img.src = imgElement.src;
-                img.onload = () => {
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0, img.width, img.height);
-                    const imageData = ctx.getImageData(0, 0, img.width, img.height);
-                    const data = imageData.data;
-                    let r = 0, g = 0, b = 0;
-
-                    for (let i = 0; i < data.length; i += 4) {
-                        r += data[i];
-                        g += data[i + 1];
-                        b += data[i + 2];
-                    }
-
-                    r = Math.floor(r / (data.length / 4));
-                    g = Math.floor(g / (data.length / 4));
-                    b = Math.floor(b / (data.length / 4));
-
-                    resolve(`rgb(${r}, ${g}, ${b})`);
-                };
-                img.onerror = reject;
-            });
-        }
-
-        async function setBackgroundColor() {
-            const imgElements = document.querySelectorAll('img');
-            for (const img of imgElements) {
-                try {
-                    const dominantColor = await getDominantColor(img);
-                    img.closest('.container').style.backgroundColor = dominantColor;
-                } catch (error) {
-                    console.error('Error getting dominant color:', error);
-                }
-            }
-        }
-
-        window.onload = setBackgroundColor;
-    </script>
-</body>
-
-</html>
+        <div class="container">
+          <img class="tile-light-pink-normal" src="images/5.png" />
+        </div>
+        <div class="filler-light-pink"></div>
+        <div class="container">
+        <div class="tile-light-pink-front">
+            <img class="inner-light-pink-front" src="images/6.png" />
+        </div>
+        </div>
+        <div class="container">
+          <img
+            id="3"
+            style="margin-top: -90vh"
+            class="tile-light-pink-back"
+            src="images/7.png"
+          />
+        </div>
+        <div class="yelger-gradient"></div>
+        <div class="container">
+          <img class="tile-green-normal" src="images/8.png" />
+        </div>
+        <div class="container">
+          <img class="tile-green-normal" src="images/9.png" />
+        </div>
+        <div class="container">
+          <img class="tile-green-normal" src="images/10.png" />
+        </div>
+        <div class="container">
+          <img class="tile-green-normal" src="images/11.png" />
+        </div>
+        <div class="container">
+          <img class="tile-green-normal" src="images/12.png" />
+        </div>
+        <div class="container">
+          <div class="filler-green"></div>
+          <img id="4" class="tile-blue-normal" src="images/13.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/14.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/15.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/16.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/17.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/18.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/19.png" />
+        </div>
+        <div class="container">
+          <img class="tile-blue-normal" src="images/20.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/21.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/22.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/23.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/22.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/24.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/25.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/26.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/27.png" />
+        </div>
+        <div class="container">
+            <img class="tile-blue-normal" src="images/28.png" />
+        </div>
+        <footer class="foot">
+          <a href="https://github.com/armanibrisim">Github</a>
+          <a style="margin-left: 5px">|</a>
+          <a
+            style="margin-left: 5px"
+            href="https://tr.linkedin.com/in/arman-ibri%C5%9Fim-218762253"
+            >LinkedIn</a
+          >
+        </footer>
+      </div>
+    </body>
+  </html>
